@@ -1,22 +1,25 @@
-//
-// Created by thomas on 27/01/16.
-//
+/**
+ * @author Thomas Munoz
+ */
 
 #ifndef SURVEILLANCE_WEBCAM_H
 #define SURVEILLANCE_WEBCAM_H
 
 
-#include <opencv2/highgui/highgui_c.h>
+
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 #include "WebcamNotFoundException.h"
 
 class Webcam {
-    CvCapture * webcam;
+    cv::VideoCapture webcam;
 
 public :
     Webcam() throw(WebcamNotFoundException);
 
-    IplImage * getCurrentFrame();
+    cv::Mat getCurrentFrame();
 
+    void close();
 private :
 
     bool init() throw(WebcamNotFoundException);

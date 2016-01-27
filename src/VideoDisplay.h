@@ -7,6 +7,7 @@
 
 #include <opencv2/core/types_c.h>
 #include <string>
+#include <opencv2/core/core.hpp>
 
 class VideoDisplay {
 private :
@@ -15,7 +16,7 @@ private :
 public :
     VideoDisplay(char * name);
 
-    void showFrame(IplImage * frame);
+    void showFrame(cv::Mat mat);
 };
 
 

@@ -1,9 +1,12 @@
-//
-// Created by thomas on 27/01/16.
-//
+/**
+ * @author Thomas Munoz
+ */
 
-#include <opencv2/highgui/highgui_c.h>
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 #include "VideoDisplay.h"
+
+using namespace cv;
 
 VideoDisplay::VideoDisplay(char * name)
         : windowName(name)
@@ -11,6 +14,6 @@ VideoDisplay::VideoDisplay(char * name)
     cvNamedWindow(name);
 }
 
-void VideoDisplay::showFrame(IplImage * frame) {
-    cvShowImage(this->windowName, frame);
+void VideoDisplay::showFrame(Mat mat) {
+    imshow(this->windowName, mat);
 }

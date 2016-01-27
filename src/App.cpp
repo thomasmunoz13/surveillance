@@ -1,14 +1,20 @@
-//
-// Created by thomas on 27/01/16.
-//
+/**
+ * @author Thomas Munoz
+ */
 
 #include <iostream>
 #include "App.h"
+#include "MotionTrack.h"
 
 void App::showUntil(Webcam webcam, VideoDisplay videoDisplay, const char key) {
-    while(true) {
-         if((char) cvWaitKey(40) == key) break;
+    MotionTrack motionTrack = MotionTrack(webcam);
 
-        videoDisplay.showFrame(webcam.getCurrentFrame());
+    while(true) {
+         if((char) cvWaitKey(40) == key) {
+             webcam.close();
+             break;
+         }
+
+        videoDisplay.showFrame(motionTrack.detect());
     }
 }

@@ -13,7 +13,7 @@ set(SOURCE_FILES
         src/VideoDisplay.cpp
         src/VideoDisplay.h
         src/App.cpp
-        src/App.h)
+        src/App.h src/MotionTrack.cpp src/MotionTrack.h)
 
 add_executable(surveillance ${SOURCE_FILES})
 
