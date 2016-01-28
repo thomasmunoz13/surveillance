@@ -4,7 +4,8 @@ find_package(OpenCV REQUIRED)
 
 set(DEBUG "-DDEBUG")
 set(DEBUG_LEVEL "1")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 ${DEBUG}=${DEBUG_LEVEL}")
+set(MAIL_FLAGS "-DLINUX")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 ${DEBUG}=${DEBUG_LEVEL} ${MAIL_FLAGS}")
 
 set(SOURCE_FILES
         src/main.cpp
@@ -20,7 +21,15 @@ set(SOURCE_FILES
         src/MotionTrack.h
         src/FrameOutput.h
         src/FrameOutputFile.cpp
-        src/FrameOutputFile.h)
+        src/FrameOutputFile.h
+        include/base64.cpp
+        include/base64.h
+        include/CSmtp.cpp
+        include/CSmtp.h
+        src/FrameOutputMail.cpp
+        src/FrameOutputMail.h
+        src/MailSender.cpp
+        src/MailSender.h)
 
 add_executable(surveillance ${SOURCE_FILES})
 

@@ -14,6 +14,8 @@ public:
     FrameOutputFile(std::string fileBase);
 
     virtual void save(const cv::Mat frame);
+
+    std::string saveFile(const cv::Mat frame);
 };
 
 

@@ -12,6 +12,10 @@ FrameOutputFile::FrameOutputFile(std::string fileBase)
 {}
 
 void FrameOutputFile::save(const cv::Mat frame) {
+    saveFile(frame);
+}
+
+std::string FrameOutputFile::saveFile(const cv::Mat frame) {
     std::stringstream ss;
 
     std::chrono::time_point<std::chrono::system_clock> start;
@@ -23,4 +27,6 @@ void FrameOutputFile::save(const cv::Mat frame) {
     ss << this->fileBase << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
 
     cv::imwrite(ss.str(), frame);
+
+    return ss.str();
 }
