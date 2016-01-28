@@ -4,14 +4,13 @@
 
 #ifndef SURVEILLANCE_MOTIONTRACK_H
 #define SURVEILLANCE_MOTIONTRACK_H
-#define DEBUG 1
 
 #include "Webcam.h"
 
 #if DEBUG == 1
 #include "VideoDisplay.h"
 #endif
-
+;
 class MotionTrack {
 
 private :

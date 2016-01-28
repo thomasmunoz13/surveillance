@@ -16,6 +16,8 @@ Webcam::Webcam() throw(WebcamNotFoundException) {
 
 bool Webcam::init() throw(WebcamNotFoundException){
     this->webcam.open(0);
+    this->webcam.set(CV_CAP_PROP_FRAME_WIDTH, 1280);
+    this->webcam.set(CV_CAP_PROP_FRAME_HEIGHT, 720);
     if(!this->webcam.isOpened()) throw new WebcamNotFoundException();
 }
 

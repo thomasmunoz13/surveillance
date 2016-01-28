@@ -2,6 +2,8 @@
  * @author Thomas Munoz
  */
 
+#include <chrono>
+#include <thread>
 #include "MotionTrack.h"
 
 MotionTrack::MotionTrack(Webcam webcam)
@@ -59,8 +61,10 @@ cv::Mat MotionTrack::detect() {
     // We find an object (a motion
     if(contours.size() > 0){
         #if DEBUG == 1
+            std::cout << "Motion detected !" << std::endl;
             drawContour(second, contours);
         #endif
+
         save(second);
     }
 
@@ -68,15 +72,15 @@ cv::Mat MotionTrack::detect() {
 }
 
 void MotionTrack::save(cv::Mat frame) {
-    time_t t = time(0);   // get time now
-    struct tm * now = localtime( & t );
-
     std::stringstream ss;
 
-    ss << now->tm_mday << '-'
-    << (now->tm_mon + 1) << '-'
-    << (now->tm_year + 1900) << '-'
-    << (now->tm_sec) << ".jpg";
+    std::chrono::time_point<std::chrono::system_clock> start;
+    start = std::chrono::system_clock::now();
+
+    std::time_t end_time = std::chrono::system_clock::to_time_t(start);
+
+    // Use of random to avoid same filename for the same second
+    ss << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
 
     cv::imwrite(ss.str(), frame);
 }

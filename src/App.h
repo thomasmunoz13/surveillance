@@ -15,7 +15,12 @@ public :
         ESC = 27
     };
 
+#if DEBUG == 1
     void showUntil(Webcam webcam, VideoDisplay videoDisplay, const char key);
+#else
+    void showUntil(Webcam webcam, const char key);
+#endif
+
 };
 
 
