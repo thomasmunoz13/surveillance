@@ -80,7 +80,7 @@ void MotionTrack::save(cv::Mat frame) {
     std::time_t end_time = std::chrono::system_clock::to_time_t(start);
 
     // Use of random to avoid same filename for the same second
-    ss << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
+    ss << "images/" << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
 
     cv::imwrite(ss.str(), frame);
 }
