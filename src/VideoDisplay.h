@@ -1,13 +1,13 @@
-//
-// Created by thomas on 27/01/16.
-//
+/**
+ * @author Thomas Munoz
+ */
 
 #ifndef SURVEILLANCE_VIDEODISPLAY_H
 #define SURVEILLANCE_VIDEODISPLAY_H
 
 #include <opencv2/core/types_c.h>
-#include <string>
 #include <opencv2/core/core.hpp>
+#include <string>
 
 class VideoDisplay {
 private :
@@ -16,7 +16,7 @@ private :
 public :
     VideoDisplay(char * name);
 
-    void showFrame(cv::Mat mat);
+    void showFrame(const cv::Mat & mat);
 };
 
 

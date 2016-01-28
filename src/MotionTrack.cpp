@@ -30,10 +30,15 @@ void MotionTrack::drawContour(cv::Mat & frame, std::vector<std::vector<cv::Point
 }
 #endif
 
-cv::Mat MotionTrack::detect() {
+bool MotionTrack::detect() {
     // We first get two frames (we will compare them
     cv::Mat first = this->webcam.getCurrentFrame();
+
+    // Sleep for 333 ms (3fps)
+    std::this_thread::sleep_for(std::chrono::milliseconds(333));
+
     cv::Mat second = this->webcam.getCurrentFrame();
+    this->lastFrame = second;
 
     // Convert both frames in gray (it's better to detect motion)
     cv::Mat grayFirst, graySecond;
@@ -58,29 +63,17 @@ cv::Mat MotionTrack::detect() {
     // Retrieves external contours
     cv::findContours(temp, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
 
-    // We find an object (a motion
+    // We find an object (a motion)
     if(contours.size() > 0){
         #if DEBUG == 1
             std::cout << "Motion detected !" << std::endl;
             drawContour(second, contours);
         #endif
-
-        save(second);
     }
 
-    return second;
+    return contours.size() > 0;
 }
 
-void MotionTrack::save(cv::Mat frame) {
-    std::stringstream ss;
-
-    std::chrono::time_point<std::chrono::system_clock> start;
-    start = std::chrono::system_clock::now();
-
-    std::time_t end_time = std::chrono::system_clock::to_time_t(start);
-
-    // Use of random to avoid same filename for the same second
-    ss << "images/" << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
-
-    cv::imwrite(ss.str(), frame);
+const cv::Mat & MotionTrack::getLastFrame() {
+    return this->lastFrame;
 }

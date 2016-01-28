@@ -3,7 +3,7 @@ project(surveillance)
 find_package(OpenCV REQUIRED)
 
 set(DEBUG "-DDEBUG")
-set(DEBUG_LEVEL "0")
+set(DEBUG_LEVEL "1")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 ${DEBUG}=${DEBUG_LEVEL}")
 
 set(SOURCE_FILES
@@ -17,7 +17,10 @@ set(SOURCE_FILES
         src/App.cpp
         src/App.h
         src/MotionTrack.cpp
-        src/MotionTrack.h)
+        src/MotionTrack.h
+        src/FrameOutput.h
+        src/FrameOutputFile.cpp
+        src/FrameOutputFile.h)
 
 add_executable(surveillance ${SOURCE_FILES})
 

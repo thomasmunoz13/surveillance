@@ -6,6 +6,7 @@
 #endif
 
 #include "App.h"
+#include "FrameOutputFile.h"
 
 using namespace std;
 using namespace cv;
@@ -14,7 +15,8 @@ int main() {
     srand (time(NULL));
 
     Webcam webcam = Webcam();
-    App app = App();
+    FrameOutputFile outputFile = FrameOutputFile("images/");
+    App app = App(&outputFile);
 
 #if DEBUG == 1
     VideoDisplay videoDisplay = VideoDisplay((char *) "Video");

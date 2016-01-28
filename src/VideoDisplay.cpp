@@ -14,6 +14,6 @@ VideoDisplay::VideoDisplay(char * name)
     cvNamedWindow(name);
 }
 
-void VideoDisplay::showFrame(Mat mat) {
+void VideoDisplay::showFrame(const Mat & mat) {
     imshow(this->windowName, mat);
 }

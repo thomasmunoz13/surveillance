@@ -15,13 +15,13 @@ class MotionTrack {
 
 private :
     enum {
-        SENSITIVITY = 70,
-        BLUR = 10
+        SENSITIVITY = 70
     };
 
     Webcam webcam;
 
-    void save(cv::Mat frame);
+    cv::Mat lastFrame;
+
 
 #if DEBUG == 1
     void drawContour(cv::Mat & frame, std::vector<std::vector<cv::Point>> contours);
@@ -30,7 +30,9 @@ private :
 public :
     MotionTrack(Webcam webcam);
 
-    cv::Mat detect();
+    bool detect();
+
+    const cv::Mat & getLastFrame();
 };
 
 

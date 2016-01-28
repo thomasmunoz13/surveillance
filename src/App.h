@@ -7,13 +7,18 @@
 
 #include "Webcam.h"
 #include "VideoDisplay.h"
+#include "FrameOutput.h"
 
 class App {
+private :
+    FrameOutput * output;
 
 public :
     enum {
         ESC = 27
     };
+
+    App(FrameOutput * output);
 
 #if DEBUG == 1
     void showUntil(Webcam webcam, VideoDisplay videoDisplay, const char key);
