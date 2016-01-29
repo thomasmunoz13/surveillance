@@ -18,11 +18,11 @@ private :
     std::string subject;
     std::time_t lastMessage = 0;
     std::time_t limit;
-
     MailSender mailSender;
     FrameOutputFile outputFile;
 
     bool hasPeriodPassed();
+
     void sendMail(const std::string fileName);
 public:
 

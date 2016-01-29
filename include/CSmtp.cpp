@@ -563,16 +563,19 @@ void CSmtp::Send()
 	{
 		strcpy(FileName,Attachments[FileId].c_str());
 
-		sprintf(SendBuf,"--%s\r\n",BOUNDARY_TEXT);
-		strcat(SendBuf,"Content-Type: application/x-msdownload; name=\"");
+		sprintf(SendBuf, "--%s\r\n", BOUNDARY_TEXT);
+		//strcat(SendBuf,"Content-Type: application/x-msdownload; name=\"");
+		strcat(SendBuf, "Content-Type: image/jpeg; name=\"");
+		strcat(SendBuf, & FileName[Attachments[FileId].find_last_of("\\") + 1]);
+		strcat(SendBuf, "\"\r\n");
+		strcat(SendBuf, "Content-Transfer-Encoding: base64\r\n");
+		strcat(SendBuf, "Content-Disposition: attachment; filename=\"");
 		strcat(SendBuf,&FileName[Attachments[FileId].find_last_of("\\") + 1]);
-		strcat(SendBuf,"\"\r\n");
-		strcat(SendBuf,"Content-Transfer-Encoding: base64\r\n");
-		strcat(SendBuf,"Content-Disposition: attachment; filename=\"");
-		strcat(SendBuf,&FileName[Attachments[FileId].find_last_of("\\") + 1]);
-		strcat(SendBuf,"\"\r\n");
-		strcat(SendBuf,"\r\n");
-
+		strcat(SendBuf, "\"\r\n");
+		strcat(SendBuf, "X-Attachment-Id: 0123456789\r\n");
+		strcat(SendBuf, "Content-ID: <0123456789>\r\n");
+		strcat(SendBuf, "\r\n");
+		
 		SendData();
 
 		// opening the file:
@@ -986,13 +989,13 @@ void CSmtp::FormatHeader(char* header)
 	strcat(header,"MIME-Version: 1.0\r\n");
 	if(!Attachments.size())
 	{ // no attachments
-		strcat(header,"Content-type: text/plain; charset=US-ASCII\r\n");
+		strcat(header,"Content-type: text/html; charset=US-ASCII\r\n");
 		strcat(header,"Content-Transfer-Encoding: 7bit\r\n");
 		strcat(SendBuf,"\r\n");
 	}
 	else
 	{ // there is one or more attachments
-		strcat(header,"Content-Type: multipart/mixed; boundary=\"");
+		strcat(header,"Content-Type: multipart/alternative; boundary=\"");
 		strcat(header,BOUNDARY_TEXT);
 		strcat(header,"\"\r\n");
 		strcat(header,"\r\n");
@@ -1000,7 +1003,7 @@ void CSmtp::FormatHeader(char* header)
 		strcat(SendBuf,"--");
 		strcat(SendBuf,BOUNDARY_TEXT);
 		strcat(SendBuf,"\r\n");
-		strcat(SendBuf,"Content-type: text/plain; charset=US-ASCII\r\n");
+		strcat(SendBuf,"Content-type: text/html; charset=US-ASCII\r\n");
 		strcat(SendBuf,"Content-Transfer-Encoding: 7bit\r\n");
 		strcat(SendBuf,"\r\n");
 	}

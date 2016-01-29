@@ -4,6 +4,8 @@
 #ifndef SURVEILLANCE_FRAMEOUTPUT_H
 #define SURVEILLANCE_FRAMEOUTPUT_H
 
+#pragma once
+
 #include <opencv2/core/core.hpp>
 
 class FrameOutput {

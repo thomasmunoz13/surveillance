@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <opencv2/highgui/highgui.hpp>
+#include <iostream>
 #include "FrameOutputFile.h"
 
 
@@ -16,17 +17,15 @@ void FrameOutputFile::save(const cv::Mat frame) {
 }
 
 std::string FrameOutputFile::saveFile(const cv::Mat frame) {
-    std::stringstream ss;
-
     std::chrono::time_point<std::chrono::system_clock> start;
     start = std::chrono::system_clock::now();
 
     std::time_t end_time = std::chrono::system_clock::to_time_t(start);
 
-    // Use of random to avoid same filename for the same second
-    ss << this->fileBase << std::ctime(&end_time) << '-' << rand() % 1000 + 0 << ".jpg";
+    std::string file = (std::string) (this->fileBase + std::string(std::ctime(&end_time)) + std::string(".jpg"));
+    file.erase(std::remove(file.begin(), file.end(), '\n'), file.end());
+    std::cout << file << std::endl;
+    cv::imwrite(file, frame);
 
-    cv::imwrite(ss.str(), frame);
-
-    return ss.str();
+    return file;
 }
