@@ -17,6 +17,8 @@
 #include "CSmtp.h"
 #include "base64.h"
 #include <unistd.h>
+#include <iostream>
+#include <sstream>
 
 ////////////////////////////////////////////////////////////////////////////////
 //        NAME: CSmtp
@@ -609,6 +611,8 @@ void CSmtp::Send()
 			{
 				SendData(); // FileBuf, FileName, fclose(hFile);
 			}
+
+			SendData();
 		}
 		fclose(hFile);
 	}

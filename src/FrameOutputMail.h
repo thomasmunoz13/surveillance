@@ -16,7 +16,6 @@ private :
     std::string destination;
     std::string from;
     std::string subject;
-    std::string fileBase;
     std::time_t lastMessage = 0;
     std::time_t limit;
 
@@ -27,8 +26,9 @@ private :
     void sendMail(const std::string fileName);
 public:
 
-    FrameOutputMail(const std::string &destination, const std::string &from, const std::string &subject,
-                    const std::string &fileBase, time_t limit, MailSender mailSender, FrameOutputFile outputFile);
+    FrameOutputMail(const std::string &destination, const std::string &from,
+                    const std::string &subject, time_t limit, MailSender mailSender,
+                    FrameOutputFile outputFile);
 
     virtual void save(const cv::Mat frame);
 };

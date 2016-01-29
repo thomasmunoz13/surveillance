@@ -21,6 +21,7 @@
 	#include <errno.h>
 	#include <stdio.h>
 	#include <iostream>
+	#include <string>
 
 	#define SOCKET_ERROR -1
 	#define INVALID_SOCKET -1
@@ -34,7 +35,11 @@
 	typedef struct sockaddr* LPSOCKADDR;
 #else
 	#include <time.h>
-	#pragma comment(lib, "ws2_32.lib")
+#include <iosfwd>
+#include <bits/basic_string.h>
+#include <sstream>
+
+#pragma comment(lib, "ws2_32.lib")
 #endif
 
 #define TIME_IN_SEC		10		// how long client will wait for server response in non-blocking mode
@@ -144,7 +149,6 @@ public:
 	void SetPassword(const char*);
 	void SetXPriority(CSmptXPriority);
 	void SetSMTPServer(const char* server,const unsigned short port=0);
-
 private:	
 	std::string m_sLocalHostName;
 	std::string m_sMailFrom;
@@ -160,7 +164,6 @@ private:
 	CSmptXPriority m_iXPriority;
 	char *SendBuf;
 	char *RecvBuf;
-	
 	SOCKET hSocket;
 
 	struct Recipient

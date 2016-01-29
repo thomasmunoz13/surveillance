@@ -1,6 +1,6 @@
-//
-// Created by thomas on 28/01/16.
-//
+/**
+ * @author Thomas Munoz
+ */
 
 #include <iostream>
 #include <chrono>
@@ -9,14 +9,12 @@
 FrameOutputMail::FrameOutputMail(const std::string &destination,
                                  const std::string &from,
                                  const std::string &subject,
-                                 const std::string &fileBase,
                                  time_t limit,
                                  MailSender mailSender,
                                  FrameOutputFile outputFile)
 
         : destination(destination), from(from), subject(subject),
-          fileBase(fileBase), limit(limit), mailSender(mailSender),
-          outputFile(outputFile)
+          limit(limit), mailSender(mailSender), outputFile(outputFile)
 {}
 
 
@@ -45,5 +43,5 @@ void FrameOutputMail::sendMail(const std::string fileName) {
     << " at " << std::ctime(&end_time)
     << std::endl;
 
-    this->mailSender.send(this->destination, "A movement has been detected", ss.str(), fileName);
+    this->mailSender.send(this->destination, this->subject, ss.str(), fileName);
 }

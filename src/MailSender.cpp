@@ -25,9 +25,10 @@ bool MailSender::send(const std::string destination, const std::string subject,
         mail.SetLogin(this->login.c_str());
         mail.SetPassword(this->password.c_str());
 
-        mail.SetSenderMail(destination.c_str());
+        mail.SetSenderMail(this->senderMail.c_str());
         mail.SetSenderName(this->senderName.c_str());
         mail.SetReplyTo(this->senderMail.c_str());
+        mail.AddRecipient(destination.c_str());
 
         mail.SetSubject(subject.c_str());
         mail.SetXPriority(XPRIORITY_NORMAL);
