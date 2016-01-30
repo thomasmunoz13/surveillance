@@ -19,7 +19,6 @@ private :
     std::string password;
     std::string senderName;
     std::string senderMail;
-    CSmtp mail;
 public :
 
     MailSender(const std::string &smtp, const std::string &login, const std::string &password,

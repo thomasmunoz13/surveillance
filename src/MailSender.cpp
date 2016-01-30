@@ -19,6 +19,7 @@ bool MailSender::send(const std::string destination, const std::string subject,
                       const std::string message, const std::string attachment) {
     bool success = true;
     try {
+        CSmtp mail;
         mail.SetSMTPServer(smtp.c_str(), this->port);
 
         mail.SetLogin(login.c_str());
