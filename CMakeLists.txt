@@ -3,7 +3,7 @@ project(surveillance)
 find_package(OpenCV REQUIRED)
 
 set(DEBUG "-DDEBUG")
-set(DEBUG_LEVEL "1")
+set(DEBUG_LEVEL "0")
 set(MAIL_FLAGS "-DLINUX")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 ${DEBUG}=${DEBUG_LEVEL} ${MAIL_FLAGS}")
 

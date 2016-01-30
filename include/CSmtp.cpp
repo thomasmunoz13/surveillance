@@ -575,7 +575,7 @@ void CSmtp::Send()
 		strcat(SendBuf, "X-Attachment-Id: 0123456789\r\n");
 		strcat(SendBuf, "Content-ID: <0123456789>\r\n");
 		strcat(SendBuf, "\r\n");
-		
+
 		SendData();
 
 		// opening the file:

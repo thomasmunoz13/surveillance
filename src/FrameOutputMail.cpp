@@ -40,7 +40,7 @@ void FrameOutputMail::sendMail(const std::string fileName) {
     std::time_t end_time = std::chrono::system_clock::to_time_t(start);
 
     ss << "A new movement has been detected at "
-    << " at " << std::ctime(&end_time)
+    << std::ctime(&end_time)
     << std::endl;
 
     this->mailSender.send(this->destination, this->subject, ss.str(), fileName);
