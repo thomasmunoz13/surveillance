@@ -14,9 +14,8 @@
 class MotionTrack {
 
 private :
-    enum {
-        SENSITIVITY = 70
-    };
+
+    int SENSITIVITY;
 
     Webcam webcam;
 
@@ -33,7 +32,10 @@ public :
     bool detect();
 
     const cv::Mat & getLastFrame();
+    
+    void setSentivity(int);
 };
+
 
 
 #endif //SURVEILLANCE_MOTIONTRACK_H

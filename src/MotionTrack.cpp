@@ -7,7 +7,7 @@
 #include "MotionTrack.h"
 
 MotionTrack::MotionTrack(Webcam webcam)
-        : webcam(webcam)
+        : webcam(webcam), SENSITIVITY(70)
 {}
 
 #if DEBUG == 1
@@ -29,6 +29,11 @@ void MotionTrack::drawContour(cv::Mat & frame, std::vector<std::vector<cv::Point
     cv::rectangle(frame, rectangle, cv::Scalar(0, 255, 0));
 }
 #endif
+
+
+void MotionTrack::setSentivity(int value) {
+    SENSITIVITY = value;
+}
 
 bool MotionTrack::detect() {
     // We first get two frames (we will compare them
